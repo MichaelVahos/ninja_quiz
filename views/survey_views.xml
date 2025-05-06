@@ -1,0 +1,17 @@
+<odoo>
+  <record id="view_survey_form_inherit_ninja_quiz" model="ir.ui.view">
+    <field name="name">survey.survey.form.ninja.quiz</field>
+    <field name="model">survey.survey</field>
+    <field name="inherit_id" ref="survey.survey_survey_view_form"/>
+    <field name="arch" type="xml">
+      
+      <xpath expr="//field[@name='title']" position="after">
+        <field name="modo_juego"/>
+        <field name="tiempo_por_pregunta"/>
+        <field name="color_tema"/>
+      </xpath>
+
+    </field>
+  </record>
+</odoo>
+
