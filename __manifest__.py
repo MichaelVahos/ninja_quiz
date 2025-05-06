@@ -4,10 +4,16 @@
     'summary': 'Clon de Kahoot con Odoo Surveys',
     'description': 'Permite crear quizzes interactivos como Kahoot.',
     'author': 'Michael Vahos',
+    'license': 'LGPL-3',
     'depends': ['survey'],
     'data': [
-      'views/survey_views.xml',
-],
+        'security/ir.model.access.csv',
+        'data/ir_sequence.xml',
+        'views/survey_views.xml',
+        'views/survey_game_session_views.xml',
+        'views/survey_game_participant_views.xml',
+        'views/kahoot_game_template.xml',
+    ],
     'installable': True,
     'application': True,
 }

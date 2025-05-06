@@ -11,7 +11,14 @@
         <field name="color_tema"/>
       </xpath>
 
+      <xpath expr="//header" position="inside">
+        <button name="action_start_kahoot_game"
+                string="Iniciar modo Kahoot"
+                type="object"
+                class="btn btn-primary"
+                invisible="not active"/>
+      </xpath>
+
     </field>
   </record>
 </odoo>
-

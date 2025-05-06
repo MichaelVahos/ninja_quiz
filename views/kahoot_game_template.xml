@@ -1,0 +1,14 @@
+<odoo>
+  <template id="kahoot_game_template" name="Vista del Juego Kahoot">
+    <t t-call="website.layout">
+      <div class="container">
+        <h1>Juego: <t t-esc="survey.title"/></h1>
+        <ul>
+          <t t-foreach="questions" t-as="question">
+            <li><t t-esc="question.question"/></li>
+          </t>
+        </ul>
+      </div>
+    </t>
+  </template>
+</odoo>

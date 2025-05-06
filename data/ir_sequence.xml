@@ -1,0 +1,11 @@
+<odoo>
+  <data noupdate="1">
+    <record id="seq_survey_game_session" model="ir.sequence">
+      <field name="name">Survey Game Session</field>
+      <field name="code">survey.game.session</field>
+      <field name="prefix">G</field>
+      <field name="padding">4</field>
+      <field name="number_next">1</field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,29 @@
+<odoo>
+  <record id="view_survey_game_participant_tree" model="ir.ui.view">
+    <field name="name">survey.game.participant.tree</field>
+    <field name="model">survey.game.participant</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="session_id"/>
+        <field name="score"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_survey_game_participant_form" model="ir.ui.view">
+    <field name="name">survey.game.participant.form</field>
+    <field name="model">survey.game.participant</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="session_id"/>
+            <field name="score"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>
