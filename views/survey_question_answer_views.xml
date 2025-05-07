@@ -1,0 +1,41 @@
+<odoo>
+  <!-- Vista tipo árbol (lista) -->
+  <record id="view_survey_question_answer_tree" model="ir.ui.view">
+    <field name="name">survey.question.answer.tree</field>
+    <field name="model">survey.question.answer</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="question_id"/>
+        <field name="value"/>
+        <field name="is_correct"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Vista tipo formulario -->
+  <record id="view_survey_question_answer_form" model="ir.ui.view">
+    <field name="name">survey.question.answer.form</field>
+    <field name="model">survey.question.answer</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="question_id"/>
+            <field name="value"/>
+            <field name="is_correct"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Acción para acceder desde el menú o relacionarla -->
+  <record id="action_survey_question_answer" model="ir.actions.act_window">
+    <field name="name">Respuestas de Preguntas</field>
+    <field name="res_model">survey.question.answer</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p>Gestiona las respuestas posibles para las preguntas de las encuestas.</p>
+    </field>
+  </record>
+</odoo>

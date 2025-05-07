@@ -13,6 +13,7 @@
         'views/survey_game_session_views.xml',
         'views/survey_game_participant_views.xml',
         'views/kahoot_game_template.xml',
+        'views/survey_question_answer_views.xml',
     ],
     'installable': True,
     'application': True,

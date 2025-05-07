@@ -13,9 +13,18 @@
 
             <div class="mt-4">
               <h4>Respuestas:</h4>
-              <ul>
-                <t t-foreach="question.suggested_answer_ids" t-as="answer">
-                  <li><t t-esc="answer.value"/></li>
+              <ul class="list-group">
+                <t t-foreach="answers" t-as="answer">
+                  <li class="list-group-item mb-2">
+                    <form t-att-action="'/kahoot/answer'" method="post">
+                      <input type="hidden" name="survey_id" t-att-value="survey.id"/>
+                      <input type="hidden" name="session_id" t-att-value="survey.game_session_ids[0].id if survey.game_session_ids else 0"/>
+                      <input type="hidden" name="answer_id" t-att-value="answer.id"/>
+                      <button type="submit" class="btn btn-outline-primary w-100">
+                        <t t-esc="answer.value"/>
+                      </button>
+                    </form>
+                  </li>
                 </t>
               </ul>
             </div>
@@ -26,9 +35,7 @@
             Esta sesión aún no tiene una pregunta activa.
           </div>
         </t>
-
       </div>
     </t>
   </template>
 </odoo>
-
