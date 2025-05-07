@@ -9,9 +9,20 @@ class KahootGameController(http.Controller):
         if not survey.exists():
             return request.not_found()
 
-        questions = request.env['survey.question'].search([('survey_id', '=', survey.id)])
+        # Buscar sesión existente o crear una nueva
+        session = request.env['survey.game.session'].search([
+            ('survey_id', '=', survey.id),
+            ('state', '=', 'started')
+        ], limit=1)
+
+        if not session:
+            session = request.env['survey.game.session'].create_from_survey(survey.id)
+            session_id = session.get('res_id') if isinstance(session, dict) else session.id
+            session = request.env['survey.game.session'].browse(session_id)
+            session.action_start_game()
 
         return request.render('ninja_quiz.kahoot_game_template', {
             'survey': survey,
-            'questions': questions,
+            'question': session.current_question_id,
         })
+

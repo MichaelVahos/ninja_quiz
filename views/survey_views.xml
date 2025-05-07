@@ -15,8 +15,7 @@
         <button name="action_start_kahoot_game"
                 string="Iniciar modo Kahoot"
                 type="object"
-                class="btn btn-primary"
-                invisible="not active"/>
+                class="btn btn-primary"/>
       </xpath>
 
     </field>
