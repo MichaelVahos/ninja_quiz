@@ -1,10 +1,9 @@
 <odoo>
-  <!-- Vista tipo lista -->
   <record id="view_survey_game_participant_tree" model="ir.ui.view">
     <field name="name">survey.game.participant.tree</field>
     <field name="model">survey.game.participant</field>
     <field name="arch" type="xml">
-      <tree string="Participantes del juego">
+      <tree>
         <field name="name"/>
         <field name="session_id"/>
         <field name="score"/>
@@ -13,34 +12,30 @@
     </field>
   </record>
 
-  <!-- Vista tipo formulario -->
   <record id="view_survey_game_participant_form" model="ir.ui.view">
     <field name="name">survey.game.participant.form</field>
     <field name="model">survey.game.participant</field>
     <field name="arch" type="xml">
-      <form string="Participante del juego">
-        <sheet>
-          <group>
-            <field name="name"/>
-            <field name="session_id"/>
-            <field name="score"/>
-            <field name="is_host"/>
-          </group>
-        </sheet>
+      <form string="Participante del Juego">
+        <group>
+          <field name="name"/>
+          <field name="session_id"/>
+          <field name="score"/>
+          <field name="is_host"/>
+        </group>
       </form>
     </field>
   </record>
 
-  <!-- Acción para abrir los participantes -->
   <record id="action_survey_game_participant" model="ir.actions.act_window">
     <field name="name">Participantes</field>
     <field name="res_model">survey.game.participant</field>
     <field name="view_mode">tree,form</field>
   </record>
 
-  <!-- Menú para acceder manualmente -->
-  <menuitem id="menu_survey_game_participant" name="Participantes"
-          parent="base.menu_custom"
-          action="action_survey_game_participant"/>
-
+  <menuitem id="menu_survey_game_participant"
+            name="Participantes"
+            parent="menu_survey_game_root"
+            action="action_survey_game_participant"
+            sequence="15"/>
 </odoo>

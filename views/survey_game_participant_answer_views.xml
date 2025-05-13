@@ -1,0 +1,42 @@
+<odoo>
+  <record id="view_survey_game_participant_answer_tree" model="ir.ui.view">
+    <field name="name">survey.game.participant.answer.tree</field>
+    <field name="model">survey.game.participant.answer</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="participant_id"/>
+        <field name="question_id"/>
+        <field name="answer_id"/>
+        <field name="answered_at"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_survey_game_participant_answer_form" model="ir.ui.view">
+    <field name="name">survey.game.participant.answer.form</field>
+    <field name="model">survey.game.participant.answer</field>
+    <field name="arch" type="xml">
+      <form string="Respuesta del Participante">
+        <group>
+          <field name="participant_id"/>
+          <field name="question_id"/>
+          <field name="answer_id"/>
+          <field name="answered_at"/>
+        </group>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_survey_game_participant_answer" model="ir.actions.act_window">
+    <field name="name">Respuestas de Participantes</field>
+    <field name="res_model">survey.game.participant.answer</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_survey_game_participant_answer"
+            name="Respuestas de Participantes"
+            parent="menu_survey_game_root"
+            action="action_survey_game_participant_answer"
+            sequence="20"/>
+</odoo>
+

@@ -28,7 +28,7 @@
   </record>
 
   <record id="action_survey_game_answer" model="ir.actions.act_window">
-    <field name="name">Respuestas de Jugadores</field>
+    <field name="name">Respuestas del Juego</field>
     <field name="res_model">survey.game.answer</field>
     <field name="view_mode">tree,form</field>
   </record>
@@ -37,5 +37,5 @@
             name="Respuestas"
             parent="menu_survey_game_root"
             action="action_survey_game_answer"
-            sequence="20"/>
+            sequence="30"/>
 </odoo>
