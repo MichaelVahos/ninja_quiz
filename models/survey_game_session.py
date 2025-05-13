@@ -7,7 +7,7 @@ class SurveyGameSession(models.Model):
     name = fields.Char(string='Nombre de la sesión', required=True)
     survey_id = fields.Many2one('survey.survey', string='Encuesta', required=True)
     participant_ids = fields.One2many('survey.game.participant', 'session_id', string='Participantes')
-    
+
     state = fields.Selection([
         ('draft', 'Borrador'),
         ('started', 'Iniciado'),
@@ -34,9 +34,10 @@ class SurveyGameSession(models.Model):
 
     def action_start_game(self):
         """Inicia el juego con la primera pregunta"""
-        first_question = self.survey_id.question_ids[:1]
-        if first_question:
-            self.write({
-                'state': 'started',
-                'current_question_id': first_question.id
-            })
+        for session in self:
+            first_question = session.survey_id.question_ids[:1]
+            if first_question:
+                session.write({
+                    'state': 'started',
+                    'current_question_id': first_question.id,
+                })
