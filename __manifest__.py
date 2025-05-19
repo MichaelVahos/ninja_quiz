@@ -1,19 +1,25 @@
 {
     'name': 'Ninja Quiz',
     'version': '1.0',
-    'summary': 'Clon de Kahoot con Odoo Surveys',
-    'description': 'Permite crear quizzes interactivos como Kahoot.',
     'author': 'Michael Vahos',
+    'category': 'Tools',
+    'summary': 'Quiz interactivo tipo Kahoot integrado con encuestas',
     'license': 'LGPL-3',
-    'depends': ['survey'],
+    'depends': ['survey', 'website'],
     'data': [
-        'security/ir.model.access.csv',
-        "security/menu_access.xml",
+        'security/menu_access.xml',
         'data/ir_sequence.xml',
         'views/survey_views.xml',
-        'views/survey_game_participant_answer_views.xml',
         'views/kahoot_game_template.xml',
     ],
+    'assets': {
+        'web.assets_frontend': [
+            '/ninja_quiz/static/src/components/KahootPlayer/KahootPlayer.js',
+        ],
+    },
+    'qweb': [
+        'static/src/components/KahootPlayer/KahootPlayer.xml',
+    ],
     'installable': True,
-    'application': True,
+    'auto_install': False,
 }

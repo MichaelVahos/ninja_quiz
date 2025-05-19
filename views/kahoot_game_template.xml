@@ -1,40 +1,28 @@
 <odoo>
-  <template id="kahoot_game_template" name="Vista del Juego Kahoot">
-    <t t-call="website.layout">
-      <div class="container mt-5">
-        <h1 class="text-center mb-4">
-          Juego: <t t-esc="survey.title"/>
-        </h1>
-
-        <t t-if="question">
-          <div class="card shadow p-4 mb-4">
-            <h2 class="mb-3">Pregunta:</h2>
-            <p class="lead"><t t-esc="question.question"/></p>
-
-            <div class="mt-4">
-              <h4>Respuestas:</h4>
-              <ul class="list-group">
-                <t t-foreach="answers" t-as="answer">
-                  <li class="list-group-item mb-2">
-                    <form t-att-action="'/kahoot/answer'" method="post">
-                      <input type="hidden" name="survey_id" t-att-value="survey.id"/>
-                      <input type="hidden" name="session_id" t-att-value="survey.game_session_ids[0].id if survey.game_session_ids else 0"/>
-                      <input type="hidden" name="answer_id" t-att-value="answer.id"/>
-                      <button type="submit" class="btn btn-outline-primary w-100">
-                        <t t-esc="answer.value"/>
-                      </button>
-                    </form>
-                  </li>
-                </t>
-              </ul>
-            </div>
-          </div>
-        </t>
-        <t t-else="">
-          <div class="alert alert-warning text-center">
-            Esta sesión aún no tiene una pregunta activa.
-          </div>
-        </t>
+  <template id="kahoot_game_template" name="Kahoot Game Template">
+    <t t-name="ninja_quiz.KahootPlayer">
+      <div t-if="state.loading">
+        <p>Cargando...</p>
+      </div>
+      <div t-elif="state.error">
+        <p>Error: <t t-esc="state.error"/></p>
+      </div>
+      <div t-else="">
+        <h2><t t-esc="state.survey.title"/></h2>
+        <div>
+          <t t-if="state.question">
+            <h3><t t-esc="state.question.question"/></h3>
+            <ul>
+              <t t-foreach="state.question.answers" t-as="answer">
+                <li>
+                  <button t-on-click="() => this.submitAnswer(answer.id)">
+                    <t t-esc="answer.value"/>
+                  </button>
+                </li>
+              </t>
+            </ul>
+          </t>
+        </div>
       </div>
     </t>
   </template>

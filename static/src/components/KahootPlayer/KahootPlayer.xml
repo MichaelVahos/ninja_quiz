@@ -1,25 +1,36 @@
-<templates xml:space="preserve">
-  <t t-name="ninja_quiz.KahootPlayer" owl="1">
-    <div t-if="state.loading">Cargando pregunta...</div>
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve" inherit_id="web.assets_frontend" xmlns="http://www.w3.org/1999/xhtml">
 
-    <div t-else="">
-      <t t-if="state.completed">
-        <h2>¡Has completado el cuestionario!</h2>
-      </t>
-      <t t-else="">
-        <div class="question">
-          <h2><t t-esc="state.question.title" /></h2>
-          <ul>
-            <t t-foreach="state.answers" t-as="answer">
-              <li>
-                <button t-on-click="() => submit(answer.id)">
-                  <t t-esc="answer.value" />
-                </button>
-              </li>
+  <t t-name="ninja_quiz.KahootPlayer" owl="1">
+    <t t-if="state.loading">
+      <div class="text-center mt-5">
+        <span>Cargando pregunta...</span>
+      </div>
+    </t>
+    <t t-elif="state.error">
+      <div class="text-center text-danger mt-5">
+        <strong><t t-esc="state.error"/></strong>
+      </div>
+    </t>
+    <t t-else="">
+      <div class="o_container mt-5 text-center">
+        <h1 class="mb-4">
+          <t t-esc="state.survey.title"/>
+        </h1>
+        <div class="card p-4 shadow">
+          <h2 class="mb-3"><t t-esc="state.question.title"/></h2>
+          <div class="d-grid gap-3 mt-4">
+            <t t-foreach="state.question.answers" t-as="answer">
+              <button
+                class="btn btn-outline-primary"
+                t-on-click="() => submitAnswer(answer.id)">
+                <t t-esc="answer.value"/>
+              </button>
             </t>
-          </ul>
+          </div>
         </div>
-      </t>
-    </div>
+      </div>
+    </t>
   </t>
+
 </templates>

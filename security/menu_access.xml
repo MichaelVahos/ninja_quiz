@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <data noupdate="1">
-    <record id="menu_survey_game_session" model="ir.ui.menu">
-      <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+    <record id="menu_ninja_quiz_root" model="ir.ui.menu">
+        <field name="name">Ninja Quiz</field>
+        <field name="sequence" eval="10"/>
+        <field name="parent_id" ref="survey.menu_surveys"/>
+        <field name="action" eval="False"/>
     </record>
-  </data>
 </odoo>
