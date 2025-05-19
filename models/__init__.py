@@ -1,5 +1,6 @@
 from . import survey
 from . import quiz
+from . import survey_user_input
 from . import survey_question_answer
 from . import survey_game_participant
 from . import survey_game_session

@@ -1,0 +1,25 @@
+<templates xml:space="preserve">
+  <t t-name="ninja_quiz.KahootPlayer" owl="1">
+    <div t-if="state.loading">Cargando pregunta...</div>
+
+    <div t-else="">
+      <t t-if="state.completed">
+        <h2>¡Has completado el cuestionario!</h2>
+      </t>
+      <t t-else="">
+        <div class="question">
+          <h2><t t-esc="state.question.title" /></h2>
+          <ul>
+            <t t-foreach="state.answers" t-as="answer">
+              <li>
+                <button t-on-click="() => submit(answer.id)">
+                  <t t-esc="answer.value" />
+                </button>
+              </li>
+            </t>
+          </ul>
+        </div>
+      </t>
+    </div>
+  </t>
+</templates>
