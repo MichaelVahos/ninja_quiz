@@ -1,3 +1,5 @@
+/** @odoo-module **/
+
 import { Component, useState, onWillStart } from '@odoo/owl';
 import { jsonrpc } from '@web/core/network/rpc_service';
 
@@ -14,8 +16,13 @@ export class KahootPlayer extends Component {
             try {
                 const surveyId = parseInt(this.props.surveyId);
                 const result = await jsonrpc(`/kahoot/game/data/${surveyId}`);
-                this.state.survey = result.survey;
-                this.state.question = result.question;
+                
+                if (result.error) {
+                    this.state.error = result.error;
+                } else {
+                    this.state.survey = result.survey;
+                    this.state.question = result.question;
+                }
             } catch (err) {
                 this.state.error = 'Error al cargar los datos del juego';
             } finally {
@@ -26,8 +33,10 @@ export class KahootPlayer extends Component {
 
     async submitAnswer(answerId) {
         alert(`Respuesta enviada: ${answerId}`);
+        // Aquí puedes hacer algo más, como enviar la respuesta al backend
     }
 }
+
 KahootPlayer.template = 'ninja_quiz.KahootPlayer';
 
 export default KahootPlayer;

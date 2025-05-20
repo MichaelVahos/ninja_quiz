@@ -7,7 +7,6 @@
     'license': 'LGPL-3',
     'depends': ['survey', 'website'],
     'data': [
-        'security/menu_access.xml',
         'data/ir_sequence.xml',
         'views/survey_views.xml',
         'views/kahoot_game_template.xml',
@@ -22,4 +21,5 @@
     ],
     'installable': True,
     'auto_install': False,
+    'application': True,
 }
