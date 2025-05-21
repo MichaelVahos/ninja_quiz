@@ -14,8 +14,12 @@ export class KahootPlayer extends Component {
 
         onWillStart(async () => {
             try {
-                const surveyId = parseInt(this.props.surveyId);
+                const surveyId = parseInt(this.props.surveyId); 
+                console.log("Survey ID:", surveyId); // Verifica el valor de surveyId
+
+                // Llamada JSON-RPC para obtener los datos de la encuesta
                 const result = await jsonrpc(`/kahoot/game/data/${surveyId}`);
+                console.log("Game Data:", result); // Verifica la respuesta de la solicitud JSON-RPC
                 
                 if (result.error) {
                     this.state.error = result.error;
@@ -24,6 +28,7 @@ export class KahootPlayer extends Component {
                     this.state.question = result.question;
                 }
             } catch (err) {
+                console.error('Error loading data:', err); 
                 this.state.error = 'Error al cargar los datos del juego';
             } finally {
                 this.state.loading = false;
@@ -33,7 +38,6 @@ export class KahootPlayer extends Component {
 
     async submitAnswer(answerId) {
         alert(`Respuesta enviada: ${answerId}`);
-        // Aquí puedes hacer algo más, como enviar la respuesta al backend
     }
 }
 

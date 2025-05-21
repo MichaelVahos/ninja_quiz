@@ -1,13 +1,16 @@
 from odoo import http
 from odoo.http import request
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class KahootGameController(http.Controller):
 
     @http.route('/kahoot', type='http', auth='public', website=True)
     def kahoot_participant(self, **kwargs):
-        logger.info("===== Entró al controlador /kahoot =====")
+        _logger.info("===== Entró al controlador /kahoot =====")
         survey = request.env['survey.survey'].sudo().search([], limit=1)
-        
+        _logger.info(f"Survey found: {survey}")
         if not survey:
             _logger.error("No se encontró ninguna encuesta disponible")
             return request.render('theme_ninja_quiz.error_template', {})
