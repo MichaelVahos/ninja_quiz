@@ -21,3 +21,25 @@ class SurveySurvey(models.Model):
             'res_id': self.id,
             'target': 'current',
         }
+
+    @api.model
+    def get_game_data(self, survey_id):
+        survey = self.sudo().browse(survey_id)
+        
+        # Verificar si la encuesta existe
+        if not survey:
+            return {'error': 'Encuesta no encontrada'}
+
+        # Obtener la primera pregunta de la encuesta
+        question = survey.survey_question_ids[:1]  # Solo la primera pregunta
+        answers = [{'id': ans.id, 'value': ans.value} for ans in question.survey_answer_ids]
+        
+        return {
+            'survey': {
+                'title': survey.title,
+            },
+            'question': {
+                'title': question.title,
+                'answers': answers,
+            }
+        }

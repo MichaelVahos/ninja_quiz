@@ -28,6 +28,7 @@ class KahootGameController(http.Controller):
 
     @http.route('/kahoot/game/data/<int:survey_id>', type='json', auth='public')
     def kahoot_game_data(self, survey_id, **kwargs):
+        _logger.info(f"Entró al controlador /kahoot/game/data/{survey_id}")
         survey = request.env['survey.survey'].sudo().browse(survey_id)
         
         # Verificar si la encuesta existe

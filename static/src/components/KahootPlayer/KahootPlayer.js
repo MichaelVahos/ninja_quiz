@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
 import { Component, useState, onWillStart } from '@odoo/owl';
-import { jsonrpc } from '@web/core/network/rpc_service';
+import { rpc } from '@web/core/rpc_service';
 
 export class KahootPlayer extends Component {
     setup() {
@@ -17,9 +17,13 @@ export class KahootPlayer extends Component {
                 const surveyId = parseInt(this.props.surveyId); 
                 console.log("Survey ID:", surveyId); // Verifica el valor de surveyId
 
-                // Llamada JSON-RPC para obtener los datos de la encuesta
-                const result = await jsonrpc(`/kahoot/game/data/${surveyId}`);
-                console.log("Game Data:", result); // Verifica la respuesta de la solicitud JSON-RPC
+                // Uso rpc.query para llamar a la ruta de datos de la encuesta
+                const result = await rpc.query({
+                    model: 'survey.survey',
+                    method: 'kahoot_game_data',  // Método que se usa en el backend
+                    args: [surveyId],
+                });
+                console.log("Game Data:", result); // Verifica la respuesta de la solicitud RPC
                 
                 if (result.error) {
                     this.state.error = result.error;
