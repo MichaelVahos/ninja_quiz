@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import { Component, useState, onWillStart } from '@odoo/owl';
 import { rpc } from '@web/core/rpc_service';
 
@@ -14,15 +12,16 @@ export class KahootPlayer extends Component {
 
         onWillStart(async () => {
             try {
-                const surveyId = parseInt(this.props.surveyId); 
+                const surveyId = parseInt(this.props.surveyId); // Asegúrate de que este surveyId se pase correctamente
                 console.log("Survey ID:", surveyId); // Verifica el valor de surveyId
-
-                // Uso rpc.query para llamar a la ruta de datos de la encuesta
+                
+                // Solicitar datos usando rpc.query
                 const result = await rpc.query({
                     model: 'survey.survey',
-                    method: 'kahoot_game_data',  // Método que se usa en el backend
-                    args: [surveyId],
+                    method: 'get_game_data',  // Método en el backend
+                    args: [surveyId],  // Argumentos pasados al método
                 });
+
                 console.log("Game Data:", result); // Verifica la respuesta de la solicitud RPC
                 
                 if (result.error) {
@@ -46,5 +45,4 @@ export class KahootPlayer extends Component {
 }
 
 KahootPlayer.template = 'ninja_quiz.KahootPlayer';
-
 export default KahootPlayer;

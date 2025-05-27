@@ -22,9 +22,9 @@ class SurveySurvey(models.Model):
             'target': 'current',
         }
 
-    @api.model
-    def get_game_data(self, survey_id):
-        survey = self.sudo().browse(survey_id)
+    
+    def get_game_data(self):
+        survey = self.sudo()
         
         # Verificar si la encuesta existe
         if not survey:

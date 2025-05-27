@@ -12,7 +12,7 @@
     ],
     'assets': {
         'web.assets_frontend': [
-            'ninja_quiz/static/src/components/KahootPlayer/KahootPlayer.js',  
+            'ninja_quiz/static/src/components/KahootPlayer/KahootPlayer.js'
         ],
     },
     'installable': True,

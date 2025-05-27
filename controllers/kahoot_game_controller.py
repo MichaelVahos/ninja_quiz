@@ -8,7 +8,7 @@ class KahootGameController(http.Controller):
 
     @http.route('/kahoot', type='http', auth='public', website=True)
     def kahoot_participant(self, **kwargs):
-        _logger.info("===== Entró al controlador /kahoot =====")
+        _logger.info(" Entró al controlador /kahoot ")
         survey = request.env['survey.survey'].sudo().search([], limit=1)
         _logger.info(f"Survey found: {survey}")
         if not survey:
