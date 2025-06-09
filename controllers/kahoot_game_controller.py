@@ -36,7 +36,7 @@ class KahootGameController(http.Controller):
             return {'error': 'Encuesta no encontrada'}
         
         # Obtener la primera pregunta de la encuesta
-        question = survey.survey_question_ids[:1]  #Solo la primera pregunta
+        question = survey.survey_question_ids[:1]  # Solo la primera pregunta
         answers = [{'id': ans.id, 'value': ans.value} for ans in question.survey_answer_ids]
         
         return {
