@@ -46,3 +46,4 @@ export class KahootPlayer extends Component {
 
 KahootPlayer.template = 'ninja_quiz.KahootPlayer';
 export default KahootPlayer;
+//sin avances
